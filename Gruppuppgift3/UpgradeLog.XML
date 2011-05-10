@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="Gruppuppgift">
+</Property><Property Name="Solution File" Value="C:\Users\oska08\Desktop\ARKIV\Gruppuppgift3\Gruppuppgift.sln">
+</Property><Property Name="User Options File" Value="C:\Users\oska08\Desktop\ARKIV\Gruppuppgift3\Gruppuppgift.suo">
+</Property><Property Name="Date" Value="den 10 maj 2011">
+</Property><Property Name="Time" Value="14:31">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="Gruppuppgift.sln" Description="File successfully backed up as C:\Users\oska08\Desktop\ARKIV\Gruppuppgift3\Gruppuppgift.sln.old">
+</Event><Event ErrorLevel="0" Project="" Source="Gruppuppgift.suo" Description="File successfully backed up as C:\Users\oska08\Desktop\ARKIV\Gruppuppgift3\Gruppuppgift.suo.old">
+</Event><Event ErrorLevel="0" Project="Gruppuppgift" Source="Gruppuppgift.vcproj" Description="Converting project file 'C:\Users\oska08\Desktop\ARKIV\Gruppuppgift3\Gruppuppgift.vcproj'.">
+</Event><Event ErrorLevel="1" Project="Gruppuppgift" Source="Gruppuppgift.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="1" Project="Gruppuppgift" Source="Gruppuppgift.vcproj" Description="Attribute 'Detect64BitPortabilityProblems' of 'VCCLCompilerTool' is not supported in this version and has been removed during conversion.">
+</Event><Event ErrorLevel="1" Project="Gruppuppgift" Source="Gruppuppgift.vcproj" Description="Attribute 'Detect64BitPortabilityProblems' of 'VCCLCompilerTool' is not supported in this version and has been removed during conversion.">
+</Event><Event ErrorLevel="0" Project="Gruppuppgift" Source="Gruppuppgift.vcproj" Description="Done converting to new project file 'C:\Users\oska08\Desktop\ARKIV\Gruppuppgift3\Gruppuppgift.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="Gruppuppgift" Source="Gruppuppgift.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="Gruppuppgift.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="Gruppuppgift.sln" Description="Converted">
+</Event></UpgradeLog>
