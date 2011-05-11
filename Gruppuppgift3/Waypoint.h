@@ -33,5 +33,7 @@ public:
 	void twist();
 	int getCurrent();
 	bool getTwisted();
+	void reset();
+	D3DXVECTOR3 getEndPos();
 };
 #endif

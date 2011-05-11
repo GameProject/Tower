@@ -11,6 +11,7 @@
 #include "Waypoint.h"
 #include <time.h>
 #include "Time.h"
+#include "ScriptUtil.h"
 
 class Cube
 {
@@ -25,22 +26,20 @@ private:
 	DWORD nrOfVertices, nrOfFaces;
 	std::vector<Vertex> v;
 
+	enemyInfo eI;
 	int cId;
 	float sTimer;
 	float sStart;
 	D3DXVECTOR3 offsetPos;
 	Waypoint wp;
 	float speed;
-	bool isAlive;
-	int health;
-	float FireRes;
-	float IceRes;
-	float EarthRes;
+	float goldTimer;
+	bool hasStarted;
+	bool hasGold;
 public:
 	Cube();
 	void release();
-	void init(int id, ID3D10Device* d3dDevice, D3DXVECTOR3 size, D3DXVECTOR3 pos, float sTimer);
-	void initStats(int hp, float FireRes, float EarthRes, float IceRes);
+	void init(int id, ID3D10Device* d3dDevice, D3DXVECTOR3 size, D3DXVECTOR3 pos, float timer);
 	void update(float dt, Terrain* hM);
 	void rotate(float t);
 	void move(D3DXVECTOR3 newPos);
@@ -53,7 +52,6 @@ public:
 	void WaypointMove(float dt, Terrain* hM);
 	float getTimeToStart();
 	Waypoint getWp();
-	bool getIsAlive();
-	void setIsAlive(bool x);
+	enemyInfo getEI();
 };
 #endif

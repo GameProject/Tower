@@ -6,14 +6,7 @@ Waypoint::Waypoint()
 	this->next = current+1;
 	this->t = 0.0f;
 	this->twisted = false;
-	wP.push_back(D3DXVECTOR3(200.0f,0.0f,200.0f));
-	wP.push_back(D3DXVECTOR3(50.0f,0.0f,200.0f));
-	wP.push_back(D3DXVECTOR3(100.0f,0.0f,100.0f));
-	wP.push_back(D3DXVECTOR3(0.0f,0.0f,0.0f));
-	wP.push_back(D3DXVECTOR3(-100.0f,0.0f,-100.0f));
-	wP.push_back(D3DXVECTOR3(-100.0f,0.0f,-200.0f));
-	wP.push_back(D3DXVECTOR3(-50.0f,0.0f,-200.0f));
-	wP.push_back(D3DXVECTOR3(-200.0f,0.0f,-200.0f));
+
 	
 	
 }
@@ -102,9 +95,7 @@ D3DXVECTOR3 Waypoint::getMove(float dt, float speed)
 		}
 		else
 		{
-			twist();
-			current = 0;
-			next = current+1;
+			this->reset();
 			return oldPos;
 		}
 	}
@@ -139,8 +130,6 @@ void Waypoint::twist()
 		start++;
 		end--;
 	}
-	current = 0;
-	next = current+1;
 }
 int Waypoint::getCurrent()
 {
@@ -149,4 +138,14 @@ int Waypoint::getCurrent()
 bool Waypoint::getTwisted()
 {
 	return this->twisted;
+}
+void Waypoint::reset()
+{
+	twist();
+	current = 0;
+	next = current+1;
+}
+D3DXVECTOR3 Waypoint::getEndPos()
+{
+	return this->endPos;
 }

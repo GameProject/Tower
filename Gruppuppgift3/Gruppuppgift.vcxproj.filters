@@ -183,6 +183,7 @@
     <None Include="sky.fx">
       <Filter>Effect</Filter>
     </None>
+    <None Include="Monster.py" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuildStep Include="Effects.h">

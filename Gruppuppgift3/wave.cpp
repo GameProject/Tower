@@ -20,7 +20,7 @@ void wave::initMonsters()
 	this->pCube.resize(this->nrMonsters);
 	for(int i = 0; i < this->nrMonsters; ++i)
 	{
-		this->pCube[i].init(i,this->d3dDevice,D3DXVECTOR3(5.0f,5.0f,5.0f), D3DXVECTOR3(0.0f, -100.0f, 0.0f), (i*2.0f+2.0f));
+		this->pCube[i].init(i,this->d3dDevice,D3DXVECTOR3(5.0f,5.0f,5.0f), D3DXVECTOR3(0.0f, -100.0f, 0.0f), (i*10.0f+10.0f));
 	}
 	//Funderar på att ha init delen i skriptet
 	this->InitMonsterScript();
