@@ -10,11 +10,6 @@ Cube::Cube()
 	nrOfVertices = 24;
 	nrOfFaces	 = 12;
 	srand(time(NULL));
-	this->isAlive = false;
-	this->health = 0;
-	this->FireRes = 0.0f;
-	this->EarthRes = 0.0f;
-	this->IceRes = 0.0f;
 }
 
 void Cube::release()
@@ -25,7 +20,7 @@ void Cube::release()
 	indexBuffer  = 0;
 }
 
-void Cube::init(int id, ID3D10Device *device, D3DXVECTOR3 size, D3DXVECTOR3 pos, float sTimer)
+void Cube::init(int id, ID3D10Device *device, D3DXVECTOR3 size, D3DXVECTOR3 pos, float timer)
 {
 	d3dDevice = device;	
 	D3DXMatrixIdentity(&mWorld);
@@ -33,10 +28,8 @@ void Cube::init(int id, ID3D10Device *device, D3DXVECTOR3 size, D3DXVECTOR3 pos,
 	D3DXMatrixIdentity(&mScale);
 
 	this->cId = id;
-	this->sTimer = sTimer;
+	this->sTimer = timer;
 	this->sStart = 0;
-	this->isAlive = true;
-	this->health = 100;
 	offsetPos =  D3DXVECTOR3((float)(rand() % 40 + (-20)),0.0f,(float)(rand() % 40 + (-20)));
 	this->speed = 20.0f;
 	
@@ -128,35 +121,48 @@ void Cube::init(int id, ID3D10Device *device, D3DXVECTOR3 size, D3DXVECTOR3 pos,
 	D3D10_SUBRESOURCE_DATA iinitData;
 	iinitData.pSysMem = i;
 	d3dDevice->CreateBuffer(&ibd, &iinitData, &indexBuffer);
+
+	this->eI.eID = this->cId;
+	this->eI.ePos = this->pos;
+	this->eI.eRadius = size.x;//Tillfällig
+	this->hasStarted = false;
+	this->hasGold = false;
 }
 
-void Cube::initStats(int hp, float FireRes, float EarthRes, float IceRes)
-{
-	this->health = hp;
-	this->FireRes = FireRes;
-	this->EarthRes = EarthRes;
-	this->IceRes = IceRes;
-
-	this->isAlive = true;
-}
 
 void Cube::update(float dt, Terrain* hM)
 {
-	if(this->health <= 0)
+
+	if(this->wp.getCurrent() == 0 && !hasStarted)
 	{
-		this->isAlive = false;
+		sStart = GetTime().getGameTime();
+		this->hasStarted = true;
 	}
 
-	int tempTime = GetTime().getGameTime();
 	if(this->wp.getCurrent() == (this->wp.getwP().size() - 1))
 	{
-		sStart = tempTime;
-		this->wp.twist();
+		if(GetTime().getGameTime() >= goldTimer+7.0f)
+		{
+			this->hasGold = true;
+			sStart = GetTime().getGameTime();
+			this->wp.reset();
+		}
 	}
-	if(this->sStart+sTimer <= tempTime)
+	else
 	{
-		this->WaypointMove(GetTime().getDeltaTime(), hM);
+		float temp = GetTime().getGameTime();
+		if((this->sStart+sTimer) <= temp && !this->hasGold)
+		{
+			this->WaypointMove(GetTime().getDeltaTime(), hM);
+		}
+		else if(this->hasGold)
+		{
+			this->WaypointMove(GetTime().getDeltaTime(), hM);
+		}
+		this->goldTimer = GetTime().getGameTime();
 	}
+
+	this->eI.ePos = this->pos;
 }
 
 void Cube::rotate(float t)
@@ -227,7 +233,6 @@ void Cube::WaypointMove(float dt, Terrain* hM)
 	tempV = wp.getMove(dt,this->speed);
 	//tempV += this->offsetPos;
 	this->move(D3DXVECTOR3(tempV.x,hM->getHeight(tempV.x,tempV.z)+1,tempV.z));
-	//t += 0.10f*dt;
 
 }
 float Cube::getTimeToStart()
@@ -238,11 +243,8 @@ Waypoint Cube::getWp()
 {
 	return this->wp;
 }
-bool Cube::getIsAlive()
+enemyInfo Cube::getEI()
 {
-	return this->isAlive;
+	return this->eI;
 }
-void Cube::setIsAlive(bool x)
-{
-	this->isAlive = x;
-}
+
